@@ -1,0 +1,131 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <ProjectGuid>{8A8B42A5-F453-4FAE-9DF3-160AE6B85214}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <OutputPath>bin</OutputPath>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <DebugType>full</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>4.0</OldToolsVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UpgradeBackupLocation />
+  </PropertyGroup>
+  <ItemGroup>
+    <Content Include="app.css" />
+    <Content Include="default.htm" />
+    <Content Include="app.js">
+      <DependentUpon>app.ts</DependentUpon>
+    </Content>
+    <Content Include="images\b1fh.gif" />
+    <Content Include="images\b1fv.gif" />
+    <Content Include="images\b1pb.gif" />
+    <Content Include="images\b1pl.gif" />
+    <Content Include="images\b1pr.gif" />
+    <Content Include="images\b1pt.gif" />
+    <Content Include="images\b2fh.gif" />
+    <Content Include="images\b2fv.gif" />
+    <Content Include="images\b2pb.gif" />
+    <Content Include="images\b2pl.gif" />
+    <Content Include="images\b2pr.gif" />
+    <Content Include="images\b2pt.gif" />
+    <Content Include="images\c1.gif" />
+    <Content Include="images\c10.gif" />
+    <Content Include="images\c2.gif" />
+    <Content Include="images\c3.gif" />
+    <Content Include="images\c4.gif" />
+    <Content Include="images\c5.gif" />
+    <Content Include="images\c6.gif" />
+    <Content Include="images\c7.gif" />
+    <Content Include="images\c8.gif" />
+    <Content Include="images\c9.gif" />
+    <Content Include="images\cj.gif" />
+    <Content Include="images\ck.gif" />
+    <Content Include="images\cq.gif" />
+    <Content Include="images\d1.gif" />
+    <Content Include="images\d10.gif" />
+    <Content Include="images\d2.gif" />
+    <Content Include="images\d3.gif" />
+    <Content Include="images\d4.gif" />
+    <Content Include="images\d5.gif" />
+    <Content Include="images\d6.gif" />
+    <Content Include="images\d7.gif" />
+    <Content Include="images\d8.gif" />
+    <Content Include="images\d9.gif" />
+    <Content Include="images\dj.gif" />
+    <Content Include="images\dk.gif" />
+    <Content Include="images\dq.gif" />
+    <Content Include="images\ec.gif" />
+    <Content Include="images\h1.gif" />
+    <Content Include="images\h10.gif" />
+    <Content Include="images\h2.gif" />
+    <Content Include="images\h3.gif" />
+    <Content Include="images\h4.gif" />
+    <Content Include="images\h5.gif" />
+    <Content Include="images\h6.gif" />
+    <Content Include="images\h7.gif" />
+    <Content Include="images\h8.gif" />
+    <Content Include="images\h9.gif" />
+    <Content Include="images\hj.gif" />
+    <Content Include="images\hk.gif" />
+    <Content Include="images\hq.gif" />
+    <Content Include="images\index.html" />
+    <Content Include="images\jb.gif" />
+    <Content Include="images\jr.gif" />
+    <Content Include="images\s1.gif" />
+    <Content Include="images\s10.gif" />
+    <Content Include="images\s2.gif" />
+    <Content Include="images\s3.gif" />
+    <Content Include="images\s4.gif" />
+    <Content Include="images\s5.gif" />
+    <Content Include="images\s6.gif" />
+    <Content Include="images\s7.gif" />
+    <Content Include="images\s8.gif" />
+    <Content Include="images\s9.gif" />
+    <Content Include="images\sj.gif" />
+    <Content Include="images\sk.gif" />
+    <Content Include="images\sq.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <TypeScriptCompile Include="app.ts" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <PropertyGroup>
+    <RootNamespace>egyptian</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>0</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:3495/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="BeforeBuild">
+    <Exec Command="&quot;$(PROGRAMFILES)\Microsoft SDKs\TypeScript\0.8.0.0\tsc&quot; @(TypeScriptCompile ->'&quot;%(fullpath)&quot;', ' ')" />
+  </Target>
+</Project>

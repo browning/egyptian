@@ -1,0 +1,5 @@
+C:\Users\brian\Documents\Visual Studio 2012\Projects\egyptian\egyptian\bin\egyptian.dll
+C:\Users\brian\Documents\Visual Studio 2012\Projects\egyptian\egyptian\bin\egyptian.pdb
+C:\Users\brian\Documents\Visual Studio 2012\Projects\egyptian\egyptian\obj\Release\egyptian.dll
+C:\Users\brian\Documents\Visual Studio 2012\Projects\egyptian\egyptian\obj\Release\egyptian.pdb
+C:\Users\brian\Documents\Visual Studio 2012\Projects\egyptian\egyptian\obj\Release\egyptian.csprojResolveAssemblyReference.cache
