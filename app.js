@@ -112,11 +112,14 @@ var GameState = (function () {
     GameState.prototype.play_cards = function () {
         if(this.turn_index == 0) {
         } else {
-            var to_play = this.players[this.turn_index].library.pop();
-            this.stack.push(to_play);
-            this.turn_index = this.turn_index + 1;
-            if(this.turn_index == 4) {
-                this.turn_index = 0;
+            if(new Date().getTime() > last_action + speed) {
+                var to_play = this.players[this.turn_index].library.pop();
+                this.stack.push(to_play);
+                this.turn_index = this.turn_index + 1;
+                if(this.turn_index == 4) {
+                    this.turn_index = 0;
+                }
+                last_action = new Date().getTime();
             }
         }
     };
@@ -132,6 +135,8 @@ var GameState = (function () {
     return GameState;
 })();
 var state;
+var speed = 1500;
+var last_action = 0;
 function game_loop() {
     state.clear_canvas();
     state.draw_players();

@@ -131,13 +131,14 @@ class GameState {
         if (this.turn_index == 0) {
             // wait for human to play card
         }
-        else {
+        else if ( new Date().getTime() > last_action + speed ) {
             // play card from Player's library
             var to_play = this.players[this.turn_index].library.pop();
             this.stack.push(to_play);
             this.turn_index = this.turn_index + 1;
             if (this.turn_index == 4)
                 this.turn_index = 0;
+            last_action = new Date().getTime();
         }
     }
 
@@ -155,6 +156,8 @@ class GameState {
 }
 
 var state;
+var speed = 1500;
+var last_action = 0;
 
 function game_loop() {
      state.clear_canvas();
