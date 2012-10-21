@@ -129,6 +129,9 @@ var GameState = (function () {
             clicked_library = true;
         }
         if(this.turn_index == 0 && clicked_library) {
+            var to_play = this.players[0].library.pop();
+            this.stack.push(to_play);
+            last_action = new Date().getTime();
             this.turn_index = 1;
         }
     };
