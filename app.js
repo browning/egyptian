@@ -120,8 +120,12 @@ var GameState = (function () {
             }
         }
     };
-    GameState.prototype.onclick = function () {
-        if(this.turn_index == 0) {
+    GameState.prototype.onclick = function (e) {
+        var clicked_library = false;
+        if(e.screenX > 280 && e.screenX < 280 + 100 && e.screenY > 380 && e.screenY < 380 + 200) {
+            clicked_library = true;
+        }
+        if(this.turn_index == 0 && clicked_library) {
             this.turn_index = 1;
         }
     };
@@ -142,7 +146,7 @@ window.onload = function () {
     var canvas_context = canvas["getContext"]('2d');
     state = new GameState(canvas_context);
     canvas.addEventListener('click', function (event) {
-        state.onclick();
+        state.onclick(event);
     }, false);
     game_loop();
 };
