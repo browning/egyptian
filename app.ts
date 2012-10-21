@@ -116,10 +116,14 @@ class GameState {
         else {
             this.canvas.fillRect(540, 180, 100, 140);
         }
-        this.canvas.drawImage(this.card_back,280,0);
-        this.canvas.drawImage(this.card_back, 0, 200);
-        this.canvas.drawImage(this.card_back, 560, 200);
-        this.canvas.drawImage(this.card_back, 280, 380);
+        if ( this.players[2].library.length > 0 ) 
+            this.canvas.drawImage(this.card_back,280,0);
+        if ( this.players[1].library.length > 0)
+            this.canvas.drawImage(this.card_back, 0, 200);
+        if ( this.players[3].library.length > 0)
+            this.canvas.drawImage(this.card_back, 560, 200);
+        if ( this.players[0].library.length > 0)
+            this.canvas.drawImage(this.card_back, 280, 380);
 
         this.canvas.fillText("Deck size: " + this.players[0].library.length.toString(), 380, 380);
         this.canvas.fillText("Deck size: " + this.players[1].library.length.toString(), 0, 180);
@@ -148,6 +152,17 @@ class GameState {
     }
 
     play_cards() {
+        for (var i = 0; i < 4; i++) {
+            if ( this.players[i].library.length == 52)
+                return;
+        }
+
+        if (this.players[this.turn_index].library.length == 0) {
+            this.turn_index = this.turn_index + 1;
+            if (this.turn_index == 4)
+                 this.turn_index = 0;
+        }
+
         if (this.turn_index == 0) {
             // wait for human to play card
         }
