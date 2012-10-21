@@ -26,6 +26,7 @@ var GameState = (function () {
         this.preload_image("images/b1fv.gif");
         this.card_back = new Image();
         this.card_back.src = "images/b1fv.gif";
+        this.cards_to_play = 0;
         for(var i = 1; i <= 13; i++) {
             var name = i.toString();
             if(i == 11) {
@@ -129,13 +130,43 @@ var GameState = (function () {
             if(new Date().getTime() > last_action + speed) {
                 var to_play = this.players[this.turn_index].library.pop();
                 this.stack.push(to_play);
-                this.turn_index = this.turn_index + 1;
-                if(this.turn_index == 4) {
-                    this.turn_index = 0;
+                if(to_play.value >= 11) {
+                    this.cards_to_play = to_play.value - 10;
+                    this.turn_index = this.turn_index + 1;
+                    if(this.turn_index == 4) {
+                        this.turn_index = 0;
+                    }
+                } else {
+                    if(to_play.value == 10 && this.cards_to_play > 0) {
+                        this.cards_to_play = 0;
+                        this.turn_index = this.turn_index + 1;
+                        if(this.turn_index == 4) {
+                            this.turn_index = 0;
+                        }
+                    } else {
+                        if(this.cards_to_play == 1) {
+                            this.give_pile_to_player(this.turn_index - 1);
+                            this.turn_index = this.turn_index - 1;
+                            this.cards_to_play = 0;
+                        } else {
+                            if(this.cards_to_play > 0) {
+                                this.cards_to_play--;
+                            } else {
+                                this.turn_index = this.turn_index + 1;
+                                if(this.turn_index == 4) {
+                                    this.turn_index = 0;
+                                }
+                            }
+                        }
+                    }
                 }
                 last_action = new Date().getTime();
             }
         }
+    };
+    GameState.prototype.give_pile_to_player = function (player_id) {
+        this.players[player_id].library.concat(this.stack);
+        this.stack.length = 0;
     };
     GameState.prototype.onclick = function (e) {
         var clicked_library = false;
@@ -146,7 +177,27 @@ var GameState = (function () {
             var to_play = this.players[0].library.pop();
             this.stack.push(to_play);
             last_action = new Date().getTime();
-            this.turn_index = 1;
+            if(to_play.value >= 11) {
+                this.cards_to_play = to_play.value - 10;
+                this.turn_index = 1;
+            } else {
+                if(to_play.value == 10 && this.cards_to_play > 0) {
+                    this.cards_to_play = 0;
+                    this.turn_index = 1;
+                } else {
+                    if(this.cards_to_play == 1) {
+                        this.give_pile_to_player(3);
+                        this.turn_index = 3;
+                        this.cards_to_play = 0;
+                    } else {
+                        if(this.cards_to_play > 0) {
+                            this.cards_to_play--;
+                        } else {
+                            this.turn_index = 1;
+                        }
+                    }
+                }
+            }
         }
     };
     return GameState;
