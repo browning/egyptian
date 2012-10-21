@@ -84,7 +84,8 @@ class GameState {
             deck.push(new Card("h", i));
             deck.push(new Card("d", i));
         }
-        deck.sort(function () { return 0.5 - Math.random() });
+        for (var i = 0; i < 10; i++)
+            deck.sort(function () { return 0.5 - Math.random() });
         var player_index = 0;
         while (deck.length > 0) {
             this.players[player_index].library.push(deck.pop());

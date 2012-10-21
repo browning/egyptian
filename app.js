@@ -64,9 +64,11 @@ var GameState = (function () {
             deck.push(new Card("h", i));
             deck.push(new Card("d", i));
         }
-        deck.sort(function () {
-            return 0.5 - Math.random();
-        });
+        for(var i = 0; i < 10; i++) {
+            deck.sort(function () {
+                return 0.5 - Math.random();
+            });
+        }
         var player_index = 0;
         while(deck.length > 0) {
             this.players[player_index].library.push(deck.pop());
@@ -138,6 +140,11 @@ var GameState = (function () {
         this.canvas.drawImage(image, 280, 200);
     };
     GameState.prototype.play_cards = function () {
+        for(var i = 0; i < 4; i++) {
+            if(this.players[i].library.length == 52) {
+                return;
+            }
+        }
         if(this.players[this.turn_index].library.length == 0) {
             this.turn_index = this.turn_index + 1;
             if(this.turn_index == 4) {
