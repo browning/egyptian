@@ -84,6 +84,7 @@ var GameState = (function () {
     };
     GameState.prototype.draw_players = function () {
         this.canvas.fillStyle = "rgb(200,0,0)";
+        this.canvas.font = "12px Arial";
         if(this.turn_index == 0) {
             this.canvas.fillRect(260, 360, 100, 140);
         } else {
@@ -101,6 +102,10 @@ var GameState = (function () {
         this.canvas.drawImage(this.card_back, 0, 200);
         this.canvas.drawImage(this.card_back, 560, 200);
         this.canvas.drawImage(this.card_back, 280, 380);
+        this.canvas.fillText("Deck size: " + this.players[0].library.length.toString(), 380, 380);
+        this.canvas.fillText("Deck size: " + this.players[1].library.length.toString(), 0, 180);
+        this.canvas.fillText("Deck size: " + this.players[2].library.length.toString(), 380, 15);
+        this.canvas.fillText("Deck size: " + this.players[3].library.length.toString(), 560, 350);
         return;
     };
     GameState.prototype.execute_game_logic = function () {
@@ -165,7 +170,7 @@ var GameState = (function () {
         }
     };
     GameState.prototype.give_pile_to_player = function (player_id) {
-        this.players[player_id].library.concat(this.stack);
+        this.players[player_id].library = this.players[player_id].library.concat(this.stack);
         this.stack.length = 0;
     };
     GameState.prototype.onclick = function (e) {
