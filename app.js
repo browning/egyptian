@@ -82,6 +82,20 @@ var GameState = (function () {
         this.canvas.fill();
     };
     GameState.prototype.draw_players = function () {
+        this.canvas.fillStyle = "rgb(200,0,0)";
+        if(this.turn_index == 0) {
+            this.canvas.fillRect(260, 360, 100, 140);
+        } else {
+            if(this.turn_index == 1) {
+                this.canvas.fillRect(0, 180, 100, 140);
+            } else {
+                if(this.turn_index == 2) {
+                    this.canvas.fillRect(260, 0, 100, 140);
+                } else {
+                    this.canvas.fillRect(540, 180, 100, 140);
+                }
+            }
+        }
         this.canvas.drawImage(this.card_back, 280, 0);
         this.canvas.drawImage(this.card_back, 0, 200);
         this.canvas.drawImage(this.card_back, 560, 200);
