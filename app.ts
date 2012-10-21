@@ -32,6 +32,7 @@ class GameState {
     stack: Card[]; // the pile of cards in the middle //
     turn_index: number;
     cards_to_play: number;
+    last_player: number;
     canvas: CanvasRenderingContext2D;
     card_back: HTMLImageElement;
     loop: Number;
@@ -42,6 +43,7 @@ class GameState {
         this.card_back = new Image();
         this.card_back.src = "images/b1fv.gif";
         this.cards_to_play = 0;
+        this.last_player = 0;
         // preload all card images
         for (var i = 1; i <= 13; i++) {
             var name = i.toString();
@@ -174,19 +176,21 @@ class GameState {
             
             if (to_play.value >= 11) {
                    this.cards_to_play = to_play.value - 10;
+                   this.last_player = this.turn_index;
                    this.turn_index = this.turn_index + 1;
                     if (this.turn_index == 4)
                         this.turn_index = 0;
                }
                else if (to_play.value == 10 && this.cards_to_play > 0) {
                    this.cards_to_play = 0;
+                   this.last_player = this.turn_index;
                    this.turn_index = this.turn_index + 1;
                    if (this.turn_index == 4)
                         this.turn_index = 0;
                }
                else if (this.cards_to_play == 1) {
-                   this.give_pile_to_player(this.turn_index - 1);
-                   this.turn_index = this.turn_index - 1;
+                   this.give_pile_to_player(this.last_player);
+                   this.turn_index = this.last_player;
                    this.cards_to_play = 0;
                }
                else if (this.cards_to_play > 0) {
@@ -194,6 +198,7 @@ class GameState {
                    // still my turn
                }
                else {
+                   this.last_player = this.turn_index;
                    this.turn_index = this.turn_index + 1;
                    if (this.turn_index == 4)
                         this.turn_index = 0;
@@ -224,14 +229,16 @@ class GameState {
                if (to_play.value >= 11) {
                    this.cards_to_play = to_play.value - 10;
                    this.turn_index = 1;
+                   this.last_player = 0;
                }
                else if (to_play.value == 10 && this.cards_to_play > 0) {
                    this.cards_to_play = 0;
+                   this.last_player = 0;
                    this.turn_index = 1;
                }
                else if (this.cards_to_play == 1) {
-                   this.give_pile_to_player(3);
-                   this.turn_index = 3;
+                   this.give_pile_to_player(this.last_player);
+                   this.turn_index = this.last_player;
                    this.cards_to_play = 0;
                }
                else if (this.cards_to_play > 0) {
@@ -239,6 +246,7 @@ class GameState {
                    // still my turn
                }
                else {
+                   this.last_player = 0;
                    this.turn_index = 1;
                }
         }
