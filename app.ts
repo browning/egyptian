@@ -214,13 +214,32 @@ class GameState {
         this.stack.length = 0;
     }
 
+    slap(player_id: number) {
+        if (this.stack.length <= 1)
+            return;
+
+        if (this.stack[this.stack.length - 1].value == this.stack[this.stack.length - 2].value) {
+            this.give_pile_to_player(player_id);
+            this.turn_index = player_id;
+        }
+    }
+
     onclick(e: MouseEvent) {
         var clicked_library = false;
+        var clicked_pile = false;
         if ( e.screenX  > 280 && 
             e.screenX < 280 + 100 &&
              e.screenY > 380 && 
             e.screenY < 380 + 200 )
             clicked_library = true;
+        
+        if ( e.screenX > 280 && e.screenX < 280 + 71 && e.screenY > 200 && e.screenY < 200 + 200)
+            clicked_pile = true;
+        
+        if (clicked_pile) {
+            this.slap(this.turn_index);
+        }
+
         if (this.turn_index == 0 && clicked_library) {
                var to_play = this.players[0].library.pop();
                this.stack.push(to_play);

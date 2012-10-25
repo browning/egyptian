@@ -27,6 +27,7 @@ var GameState = (function () {
         this.card_back = new Image();
         this.card_back.src = "images/b1fv.gif";
         this.cards_to_play = 0;
+        this.last_player = 0;
         for(var i = 1; i <= 13; i++) {
             var name = i.toString();
             if(i == 11) {
@@ -158,6 +159,7 @@ var GameState = (function () {
                 this.stack.push(to_play);
                 if(to_play.value >= 11) {
                     this.cards_to_play = to_play.value - 10;
+                    this.last_player = this.turn_index;
                     this.turn_index = this.turn_index + 1;
                     if(this.turn_index == 4) {
                         this.turn_index = 0;
@@ -165,19 +167,21 @@ var GameState = (function () {
                 } else {
                     if(to_play.value == 10 && this.cards_to_play > 0) {
                         this.cards_to_play = 0;
+                        this.last_player = this.turn_index;
                         this.turn_index = this.turn_index + 1;
                         if(this.turn_index == 4) {
                             this.turn_index = 0;
                         }
                     } else {
                         if(this.cards_to_play == 1) {
-                            this.give_pile_to_player(this.turn_index - 1);
-                            this.turn_index = this.turn_index - 1;
+                            this.give_pile_to_player(this.last_player);
+                            this.turn_index = this.last_player;
                             this.cards_to_play = 0;
                         } else {
                             if(this.cards_to_play > 0) {
                                 this.cards_to_play--;
                             } else {
+                                this.last_player = this.turn_index;
                                 this.turn_index = this.turn_index + 1;
                                 if(this.turn_index == 4) {
                                     this.turn_index = 0;
@@ -194,10 +198,26 @@ var GameState = (function () {
         this.players[player_id].library = this.players[player_id].library.concat(this.stack);
         this.stack.length = 0;
     };
+    GameState.prototype.slap = function (player_id) {
+        if(this.stack.length <= 1) {
+            return;
+        }
+        if(this.stack[this.stack.length - 1].value == this.stack[this.stack.length - 2].value) {
+            this.give_pile_to_player(player_id);
+            this.turn_index = player_id;
+        }
+    };
     GameState.prototype.onclick = function (e) {
         var clicked_library = false;
+        var clicked_pile = false;
         if(e.screenX > 280 && e.screenX < 280 + 100 && e.screenY > 380 && e.screenY < 380 + 200) {
             clicked_library = true;
+        }
+        if(e.screenX > 280 && e.screenX < 280 + 71 && e.screenY > 200 && e.screenY < 200 + 200) {
+            clicked_pile = true;
+        }
+        if(clicked_pile) {
+            this.slap(this.turn_index);
         }
         if(this.turn_index == 0 && clicked_library) {
             var to_play = this.players[0].library.pop();
@@ -206,19 +226,22 @@ var GameState = (function () {
             if(to_play.value >= 11) {
                 this.cards_to_play = to_play.value - 10;
                 this.turn_index = 1;
+                this.last_player = 0;
             } else {
                 if(to_play.value == 10 && this.cards_to_play > 0) {
                     this.cards_to_play = 0;
+                    this.last_player = 0;
                     this.turn_index = 1;
                 } else {
                     if(this.cards_to_play == 1) {
-                        this.give_pile_to_player(3);
-                        this.turn_index = 3;
+                        this.give_pile_to_player(this.last_player);
+                        this.turn_index = this.last_player;
                         this.cards_to_play = 0;
                     } else {
                         if(this.cards_to_play > 0) {
                             this.cards_to_play--;
                         } else {
+                            this.last_player = 0;
                             this.turn_index = 1;
                         }
                     }
