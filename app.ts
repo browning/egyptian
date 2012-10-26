@@ -283,7 +283,14 @@ function game_loop() {
      state.execute_game_logic();
      if (state.stack.length > 0)
         state.draw_card_in_center(state.stack[state.stack.length - 1]);
-     state.loop = setTimeout(this.game_loop, 1000 / 50);  
+     var number_of_players_with_cards = 0;
+     for (var i = 0; i < 4; i++) {
+        if ( state.players[i].library.length > 0 )
+            number_of_players_with_cards++;
+     }
+     
+    if( number_of_players_with_cards > 1 )
+        state.loop = setTimeout(this.game_loop, 1000 / 50);  
 }
 
 window.onload = () => {

@@ -93,6 +93,7 @@
     <Content Include="images\sj.gif" />
     <Content Include="images\sk.gif" />
     <Content Include="images\sq.gif" />
+    <None Include="README" />
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="app.ts" />
