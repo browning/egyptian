@@ -217,7 +217,7 @@ var GameState = (function () {
             clicked_pile = true;
         }
         if(clicked_pile) {
-            this.slap(this.turn_index);
+            this.slap(0);
         }
         if(this.turn_index == 0 && clicked_library) {
             var to_play = this.players[0].library.pop();
